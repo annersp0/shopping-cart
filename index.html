@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Page</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1> D I O R </h1>
+      <img src= "diorbag.jpg"><br>
+      <p>Blue Dior Oblique Embroidery</p>
+      <p>$3,350</p>
+      <button id="buy-now-btn">BUY NOW</button>
+      <div id="checkout-container" class="checkout-container" style="display:none;">
+        <div class="checkout-details">
+          <h3>Product Details</h3><br>
+          <img src= "diorbag.jpg">
+          <p id="product-name"></p>
+          <p id="product-price"></p>
+          <label for="shipping-to">Shipping To:</label>
+          <input type"text" id="shipping-to" name="shipping-to" required>
+          <br>
+          <label for="shipping-fee">Shipping Fee: </label>
+          <span id="shipping-fee"></span>
+          <br>
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+          <br>
+        </div>
+        <div class="checkout-summary">
+          <h3>Order Summary</h3>
+          <p>Subtotal: <span id="subtotal">$3,350</span>
+          </p>
+          <p>QTY: <span id="qty">1</span>
+          </p>
+          <p>Shipping Fee: <span id="shipping-fee">$10</span>
+          </p>
+          <p>Total: <span id="total">$3,350</span>
+          </p>
+          <button id="place-order-btn">CHECKOUT</button>
+        </div>
+        </div>
+        </div>
+        <div id="order-container" class="order-container" style="display:none;">
+            <div class="order-details">
+              <h3>Your Order</h3>
+              <div class="product-details">
+                <img src="diorbag.jpg" alt="Product Image" width="100">
+                <p id="product-name-order"></p>
+                <p id="product-price-order">$3,350</p>
+                <p id="product-quantity">Quantity: 1</p>
+                <p id="product-shipping-fee">Shipping Fee: $10</p>
+              </div>
+              <div class="order-summary">
+                <p class="subtotal">Subtotal: $3,350</p>
+                <p class="total">Total: $3,350</p>
+              </div>
+            </div>
+          </div>          
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

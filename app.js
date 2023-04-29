@@ -31,8 +31,12 @@ buyNowBtn.addEventListener("click", () => {
   updateTotal();
 });
 
-// Update the total when the quantity changes
-quantity.addEventListener("change", () => {
+// Update the total when the quantity or shipping destination changes
+shippingTo.addEventListener("input", () => {
+  updateTotal();
+});
+
+quantity.addEventListener("input", () => {
   updateTotal();
 });
 
@@ -50,33 +54,41 @@ function updateTotal() {
 
 // Handle the place order button click
 placeOrderBtn.addEventListener("click", () => {
-  // Create an order details element
-  const orderDetails = {
-    productName: product.name,
-    productPrice: product.price,
-    shippingTo: shippingTo.value,
-    shippingFee: product.shippingFee,
-    qty: parseInt(quantity.value),
-    subtotal: parseFloat(subtotal.textContent.replace("$", "")),
-    total: parseFloat(total.textContent.replace("$", ""))
-  };
-  const orderDetailsHtml = `
-    <div>
-      <h2>Order Details</h2>
-      <p><strong>Product:</strong> ${orderDetails.productName}</p>
-      <p><strong>Price:</strong> ${orderDetails.productPrice}</p>
-      <p><strong>Quantity:</strong> ${orderDetails.qty}</p>
-      <p><strong>Shipping to:</strong> ${orderDetails.shippingTo}</p>
-      <p><strong>Shipping fee:</strong> ${orderDetails.shippingFee}</p>
-      <p><strong>Subtotal:</strong> $${orderDetails.subtotal.toFixed(2)}</p>
-      <p><strong>Total:</strong> $${orderDetails.total.toFixed(2)}</p>
-    </div>
-  `;
-  // Append the order details element to the order container and show it
-  orderContainer.innerHTML = orderDetailsHtml;
-  orderContainer.style.display = "block";
+  // Create the order item element
+  const orderItem = document.createElement("div");
+  orderItem.classList.add("order-item");
+
+  // Create the order item details element
+  const orderItemDetails = document.createElement("div");
+  orderItemDetails.classList.add("order-item-details");
+
+  // Create the order item name element
+  const orderItemName = document.createElement("h3");
+  orderItemName.textContent = product.name;
+  orderItemDetails.appendChild(orderItemName);
 
   
-  // show the order-container div
+  // Create the order item quantity element
+  const orderItemQuantity = document.createElement("p");
+  orderItemQuantity.textContent = `Quantity: ${quantity.value}`;
+  orderItemDetails.appendChild(orderItemQuantity);
+
+  // Create the order item shipping fee element
+  const orderItemShippingFee = document.createElement("p");
+  orderItemShippingFee.textContent = `Shipping Fee: ${shippingFee.textContent}`;
+  orderItemDetails.appendChild(orderItemShippingFee);
+
+  // Create the order item total element
+  const orderItemTotal = document.createElement("p");
+  orderItemTotal.classList.add("order-item-total");
+  orderItemTotal.textContent = `Total: ${total.textContent}`;
+  orderItemDetails.appendChild(orderItemTotal);
+
+  // Append the order item details to the order item
+  orderItem.appendChild(orderItemDetails);
+
+  // Append the order item to the order container and show it
+  orderContainer.innerHTML = "";
+  orderContainer.appendChild(orderItem);
   orderContainer.style.display = "block";
 });
